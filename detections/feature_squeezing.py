@@ -2,7 +2,7 @@ import sklearn
 from sklearn.metrics import roc_curve, auc
 import numpy as np
 from scipy.stats import entropy
-from keras.models import Model
+# from keras.models import Model
 
 import operator
 import functools
@@ -70,14 +70,14 @@ class FeatureSqueezingDetector:
     def __init__(self, model, param_str):
         self.model = model
         subject, params = parse_params(param_str)
-
+        print(params)
         layer_id = len(model.layers)-1
         normalizer = 'none'
         metric = params['distance_measure']
         squeezers_name = params['squeezers'].split(',')
         self.set_config(layer_id, normalizer, metric, squeezers_name)
 
-        if params.has_key('threshold'):
+        if "threshold" in params:
             self.threshold = float(params['threshold'])
         else:
             self.threshold = None

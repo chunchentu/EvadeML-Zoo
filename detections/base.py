@@ -11,8 +11,8 @@ import os
 
 from sklearn.metrics import roc_curve, auc
 from .feature_squeezing import FeatureSqueezingDetector
-from .magnet_mnist import MagNetDetector as MagNetDetectorMNIST
-from .magnet_cifar import MagNetDetector as MagNetDetectorCIFAR
+# from .magnet_mnist import MagNetDetector as MagNetDetectorMNIST
+# from .magnet_cifar import MagNetDetector as MagNetDetectorCIFAR
 
 from tensorflow.python.platform import flags
 FLAGS = flags.FLAGS
@@ -37,7 +37,7 @@ def evalulate_detection_test(Y_detect_test, Y_detect_pred):
     return accuracy, tpr, fpr, tp, ap
 
 
-from tinydb import TinyDB, Query
+# from tinydb import TinyDB, Query
 
 class DetectionEvaluator:
     """
@@ -233,7 +233,7 @@ class DetectionEvaluator:
 
         return detector
 
-    def evaluate_detections(self, params_str):
+    def evaluate_detections(self, params_str, data_in=None):
         X_train, Y_train, X_test, Y_test = self.get_training_testing_data()
 
         # Example: --detection "FeatureSqueezing?distance_measure=l1&squeezers=median_smoothing_2,bit_depth_4;"
